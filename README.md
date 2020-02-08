@@ -1,4 +1,4 @@
-# Install_arch_with_windows
+# Install_arch
 Hello, my name is Pasha and this is my guide of Arch linux installation. I made it personally for myself, because I'm always accidentally destroy my system. But if you like it, you can use it.
 Actually some things, like kernel confige, You have to adjust yourself. But if you have Lenovov LEGIOM y530, tham
 this is ideal guide for you
