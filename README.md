@@ -1,5 +1,5 @@
 # Install_arch
-Hello, my name is Pasha and this is my guide of Arch linux installation. I made it personally for myself, because I'm always accidentally destroy my system. But if you like it, you can use it.
+Hello, my name is Pasha and this is my guide of Arch linux installation. I made it personally for myself, because I'm always accidentally destroying my system. But if you like it, you can use it.
 Actually some things, like kernel config, You have to adjust yourself. But if you have Lenovo LEGION y530, tham
 this is ideal guide for you
 
