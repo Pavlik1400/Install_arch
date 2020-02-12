@@ -187,6 +187,8 @@ In  "Desktop icons" hide trash, add link to Documents and Download on Desktop
 
 Also important to install proper icons: `numix-circle-icon-theme-git`, then activate in tweaks
 
+Install google sans font. `yay ttf-google-sans`. Now activate it in tweaks
+
 Install VScode: `yay visual-studio-code-insiders`
 
 Cion `yay clion #chose just clion`. Don't forget to activate licension and type path to compilers and debugger
