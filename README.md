@@ -124,6 +124,11 @@ systemctl enable NetworkManager
 systemctl enable gdm
 ```
 
+Lenovo y530 can't render HDMI output with intel GPU, so if you want to use second monitor, take **configs/xorg.conf** and replace it in /etc/X11/
+It will render the whole gnome session with nvidia. If you want to save battery life, then replace `Screen 0 "nvidia"` with `Screen 0 "intel"` and reboot
+Also download prime-run: `sudo pacman -S prime-run`
+More details [here](https://wiki.archlinux.org/index.php/PRIME#PRIME_render_offload)
+
 # System customization and apps installation
 First of all set normal wallpalers (black color for example), change touchpad sensitivity and other settings
 
@@ -138,6 +143,8 @@ Battery optimization:
 sudo pacman -S tlp
 sudo tlp start
 ```
+
+It's good idea to create new mirrorlist file for Pacman, if you from Ukraine, you can use mine (**configs/mirrorlist**). replace it in /etc/pacman.d/
 
 Terminal: `sudo pacman -S terminator`
 
@@ -193,8 +200,7 @@ List of other apps I use:
 3. AndroidStudio (+sdk +ndk)
 4. zoom
 5. Microsoft Teams
-6. ipython 
-7. clion-gui
-8. LibreOffice
+6. clion-gui
+7. LibreOffice
 
 Looks, like that's it. Happy archlinux experience
