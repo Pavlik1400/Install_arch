@@ -1,0 +1,17 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/sda9 LABEL=ARCH
+UUID=8d3f44f4-a017-4c76-9e66-dd5068dc5397	/         	ext4      	rw,relatime,discard	0 1
+
+# /dev/sda8 LABEL=HOME
+UUID=2f671175-0fe6-472a-a4b0-1da5345f03e1	/home     	ext4      	rw,relatime,discard	0 2
+
+# /dev/sda7
+#old uuid is 6AFC-4F8C
+# old uuid is AB43-9DA4
+UUID=1892-CB1C      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /dev/sda5 - swap partition
+#UUID=7C22EBD3-3C36-DD4C-A3CA-117EDCE5A1F9	none		swap		defaults,diskard	0 0
