@@ -203,4 +203,5 @@ List of other apps I use:
 6. clion-gui
 7. LibreOffice
 
+Also quite useful to cofig your touchpad gestures with [this](https://github.com/bulletmark/libinput-gestures) application
 Looks, like that's it. Happy archlinux experience
