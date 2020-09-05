@@ -1,25 +1,42 @@
 # Install_arch
-Hello, my name is Pasha and this is my guide of Arch linux installation. I made it personally for myself, because I'm always accidentally destroying my system. But if you like it, you can use it.
-Actually some things, like kernel config, you have to adjust yourself. But if you have Lenovo LEGION y530 (i5-8300H + GTX1050Ti), than
-this is ideal guide for you
+If you have LEGION y530 (i5-8300H + GTX1050Ti), than
+this is ideal guide for you, but probably it will work anyway, but maybe you'll have to adjust something (like kernel settings) yoursel
 
 # Archlinux installation
 
 So the main installation of the system I took from [This site](https://sollus-soft.blogspot.com/2017/01/arch-linux-windows-10-uefi-systemd-boot.html)
 
-Firstly check if you're loaded in EFI mode: `evivar -l`
+Firstly check if you're loaded in EFI mode: `efivar -l`
 
-On my computer wifi won't work without turning module on with this  command: `rfkill unblock all`
+On some computers wifi won't work without turning module on with this  command: `rfkill unblock all`
 
-Now turn on the Wifi: `wifi-menu`. In given menu choose the your wifi and type password
+Now let's turn on the Wifi. Firstly get name of your interface: `ip link` (it usually starts with 'w' ex: 'wlan0') 
+Then activate the interface: `ip link set interface_name up`.
+
+First method iwctl: 
+```
+iwctl
+station interface_name scan
+station interface_name get-network
+station interface_name connetct networl_name
+```
+
+Second method: iw
+Scan for networks: `iw dev interface_name scan`. You're probably interested in 'SSID' - name of network, and 'signal' - quality ('-100' - '0'). 
+And finally connect to network: `iw dev interface_name connect "your_essid" key 0:your_key`
+
+Check if internet works with `ping google.com` (should appear messages with '64 bytes' at the beginning, press CTRL+C to finish check)
 
 Time synchronization: `timedatectl set-ntp true`
 
-Now let's look at your previous boot records: `efibootmgr` and delete previous linux or some other shit: `efibootmgr -b X -B`, where 'X' is number of shit's boot
+Now let's look at your previous boot records: `efibootmgr` and delete previous linux or some other stuff: `efibootmgr -b X -B`, where 'X' is number of stuff's boot
 
 Now disk management: `cfdisk`. Here I delete everything from previous system and 
-choose my root directory (about 50GB, linux filesystem) and new boot partition (1GB, EFI filesystem) (Actually it's better to install bootloader on the Windows EFI partition). Don't 
-touch home directory (40GB). Don't forget to "write" after making new partition. 
+- choose  root directory (about 50GB, linux filesystem) 
+- boot partition (1GB, EFI filesystem) (Actually it's better to install bootloader on the Windows EFI partition, if you want to see choise of system during loading). 
+- Don't touch (or create if it's your first installation) home directory (40GB, linux filesystem). 
+- Create swap partition (4-8GB, Linux swap)
+Don't forget to "write" after making new partition. 
 
 Now format partition and mount them. Root:
 ```
@@ -30,9 +47,9 @@ Boot:
 ```
 mkdir -p /mnt/boot
 mkfs.fat -F32 /dev/sda{boot number}
-mount /dev/sda2 /mnt/boot
+mount /dev/sda{boot number} /mnt/boot
 ```
-Or just mount Windows EFI partition
+Or just mount Windows EFI partition, if you didn't create new one
 ```
 mount /dev/sda{windows boot number} /mnt/boot
 ```
@@ -44,19 +61,20 @@ swapon /dev/sda{swap num}
 
 Now let's update a pacman: `pacman  -Syy`
 
-Install base systen and packet for future AUR using: `pacstrap /mnt base linux linux-firmware base-devel`
+Install base systen and packet for future AUR using: `pacstrap /mnt base linux linux-firmware base-devel linux-headers`
 
 Generate fstab: `genfstab -U /mnt >> /mnt/etc/fstab`
 
 Check if it is generated: `nano /mnt/etc/fstab`
-You can take fstab from **configs** dir in this repo, (don't forget to change UUIDs), there are useful for your SSD diskard options 
+You can take fstab from **configs** dir in this repo, (don't forget to change filesystem UUIDs (you can find them in 'cfdisk'))
+!!**IMPORTANT**!! If you have SSD, than this is extremely important to automatically activate TRIM each time it's needed. This will save lifetime of your SSD. So please, add 'discard' option to mount points in fstab (as you can see in the **configs/fstab**)
 
 Now let's go in arch: `arch-chroot /mnt `
 
-It is immportant to donwload text editor at the beggining: `pacman -S vim`
+It is important to download text editor at the beggining: `pacman -S vim`
 Take .vim directory and .vimrc file from **configs** to install cool plugins and color scheme
 
-Adjust locals: `nvim /etc/locale.gen` and uncomment
+Adjust locals: `nano /etc/locale.gen` and uncomment
 ```
 en_US.UTF-8 UTF-8
 ru_RU.UTF-8 UTF-8
@@ -70,19 +88,19 @@ ln -sf /usr/share/zoneinfo/Europe/Kiev /etc/localtime
 hwclock --systohc
 ```
 
-Adjust name of computer: `vim /etc/hostname` and write there _"userhost - pavlik_giley"_
+Adjust name of computer: `nano /etc/hostname` and write there _"userhost - YOUR_USERNAME"_
 
-Adjust hosts: `nvim /ets/hosts` and write there -"127.0.0.1 pavlik_giley.localdomain pavlik_giley
-"-. DONT FORGET TO SAVE EVERYTHING
+Adjust hosts: `nano /ets/hosts` and write there -_"127.0.0.1 pavlik_giley.localdomain YOUR_USERNAME"-_ 
+DONT FORGET TO SAVE EVERYTHING
 
 Password for root: `passwd` 
 
-Add new user: `useradd -G wheel -s /bin/bash -m pasha`, and give him sudo permissions: `nvim /etc/sudoers` 
+Add new user: `useradd -G wheel -s /bin/bash -m YOUR_USERNAME`, and give him sudo permissions: `nvim /etc/sudoers` 
 and uncomment _"%wheel ALL=(ALL) ALL"_
 
-pasha's password: `passwd pasha`
+user's password: `passwd YOUR_USERNAME`
 
-Download some potentially useful stuf: `pacman -S  efibootmgr iw wpa_supplicant dialog netctl dhcpcd`.
+Download some potentially useful stuff: `pacman -S  efibootmgr iw wpa_supplicant dialog netctl dhcpcd`.
 And more: `pacman -S ntfs-3g mtools fuse2`
 
 Install bootloader: `bootctl install`
@@ -109,10 +127,9 @@ reboot
 
 Install X: `sudo pacman -S xorg-server xorg-xinit xorg-apps mesa-libgl xterm`
 
-Install all drivers:
+Install graphic drivers:
 ```
 sudo pacman -S xf86-video-intel
-sudo pacman -S xf86-video-nouveau
 sudo pacman -S nvidia
 ```
 
@@ -130,7 +147,7 @@ Also download prime-run: `sudo pacman -S prime-run`
 More details [here](https://wiki.archlinux.org/index.php/PRIME#PRIME_render_offload)
 
 # System customization and apps installation
-First of all set normal wallpalers (black color for example), change touchpad sensitivity and other settings
+First of all set normal wallpalers, change touchpad sensitivity and other settings in GNOME
 
 Python: 
 ```
@@ -142,6 +159,7 @@ Battery optimization:
 ```
 sudo pacman -S tlp
 sudo tlp start
+sudo systemctl enable tlp.service
 ```
 
 It's good idea to create new mirrorlist file for Pacman, if you from Ukraine, you can use mine (**configs/mirrorlist**). replace it in /etc/pacman.d/
@@ -152,7 +170,7 @@ git: `sudo pacman -S git`
 
 yay: `git clone https://aur.archlinux.org/yay.git; cd yay; makepkg -si`
 
-zsh instllation and customization (through oh my zsh):
+zsh instllation and customization with oh my zsh:
 ```
 cd ~
 sudo pacman -S zsh
@@ -162,7 +180,7 @@ echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> 
 ```
 Then copy **configs/.zshrc** to home directory
 
-Some "entertainment": 
+Browser + telegram: 
 ```
 yay telegram-desktop
 yay firefox
@@ -199,9 +217,10 @@ List of other apps I use:
 2. IntellijIDEA (don't forget to get jdk)
 3. AndroidStudio (+sdk +ndk)
 4. zoom
-5. Microsoft Teams
+5. Microsoft Teams ('teams' package in local repository)
 6. clion-gui
 7. LibreOffice
 
 Also quite useful to cofig your touchpad gestures with [this](https://github.com/bulletmark/libinput-gestures) application
 Looks, like that's it. Happy archlinux experience
+
