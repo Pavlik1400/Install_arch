@@ -13,16 +13,20 @@ On some computers wifi won't work without turning module on with this  command: 
 Now let's turn on the Wifi. Firstly get name of your interface: `ip link` (it usually starts with 'w' ex: 'wlan0') 
 Then activate the interface: `ip link set interface_name up`.
 
-First method iwctl: 
+First method: iwctl 
 ```
 iwctl
 station interface_name scan
 station interface_name get-network
-station interface_name connetct networl_name
+station interface_name connetct network_name
 ```
 
 Second method: iw
-Scan for networks: `iw dev interface_name scan`. You're probably interested in 'SSID' - name of network, and 'signal' - quality ('-100' - '0'). 
+
+Scan for networks: `iw dev interface_name scan`.
+
+You're probably interested in 'SSID' - name of network, and 'signal' - quality ('-100' - '0'). 
+
 And finally connect to network: `iw dev interface_name connect "your_essid" key 0:your_key`
 
 Check if internet works with `ping google.com` (should appear messages with '64 bytes' at the beginning, press CTRL+C to finish check)
