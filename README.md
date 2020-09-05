@@ -34,7 +34,7 @@ mount /dev/sda2 /mnt/boot
 ```
 Or just mount Windows EFI partition
 ```
-mount /dev/sda3 /mnt/boot
+mount /dev/sda{windows boot number} /mnt/boot
 ```
 Swap:
 ```
