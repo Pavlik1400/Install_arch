@@ -100,7 +100,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #HISTSIZE= HISTFFILESIZE= #infinite history
-alias x="exit"
 alias sps="sudo pacman -S"
 alias sp="sudo pacman"
 alias snv="sudo nvim"
@@ -111,6 +110,8 @@ alias mkd="mkdir -pv"
 alias ccat="highlight --out-format=ansi --force"
 alias lh="ls -lh"
 alias v="vim"
+alias c="clear"
+alias q="exit"
 # sources 
 prompt_context(){}
 source /home/pasha/syntax/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -125,7 +126,7 @@ source /usr/bin/virtualenvwrapper.sh
 # other exports
 export EDITOR="vim"
 export TRUEBROWSER="firefox"
-export PATH=$PATH:~/go/bin
+export PATH=$PATH:~/go/bin:/opt/cuda/bin/nvcc
 export VOLTPATH=~/volt
 # seed up press and hold action of all keys
 xset r rate 300 50
