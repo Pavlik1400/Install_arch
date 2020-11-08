@@ -214,7 +214,7 @@ Server = http://mirrors.nix.org.ua/linux/archlinux/$repo/os/$arch
 Server = https://mirrors.nix.org.ua/linux/archlinux/$repo/os/$arch
 ```
 
-Terminal: `sudo pacman -S terminator`
+Terminal emulator: `sudo pacman -S tilix`
 
 git: `sudo pacman -S git`
 
@@ -232,12 +232,13 @@ Browser + telegram:
 ```
 yay telegram-desktop
 yay firefox
+yay vivaldi
 ```
 Don't forget to sign in gmail, youtube, CMS, etc.
 
 CUSTOMIZATION
 ```
-sps gnome-tweaks
+yay gnome-tweaks
 ```
 Download all extension and setup tweask as you like
 
