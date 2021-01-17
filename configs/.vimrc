@@ -7,7 +7,7 @@ Plug 'https://github.com/preservim/nerdtree'
 Plug 'https://github.com/preservim/nerdcommenter'
 Plug 'https://github.com/airblade/vim-gitgutter'
 
-Plug 'https://github.com/ycm-core/YouCompleteMe'
+"Plug 'https://github.com/ycm-core/YouCompleteMe'
 "Plug 'maralla/completor.vim'
 "Plug 'maralla/completor-neosnippet'
 "Plug 'https://github.com/Shougo/neoinclude.vim'

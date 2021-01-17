@@ -112,23 +112,28 @@ alias lh="ls -lh"
 alias v="vim"
 alias c="clear"
 alias q="exit"
+alias j="journalctl"
+alias jecb="journalctl -b -p err..crit"
 # sources 
 prompt_context(){}
 source /home/pasha/syntax/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #
-source /usr/bin/virtualenvwrapper.sh
+#source /usr/bin/virtualenvwrapper.sh
 
-# pyenv stuff 
+## pyenv stuff 
 #eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
 #export PATH="/home/pasha/.pyenv/bin:$PATH"
 
 # other exports
 export EDITOR="vim"
-export TRUEBROWSER="firefox"
-export PATH=$PATH:~/go/bin:/opt/cuda/bin/nvcc
-export VOLTPATH=~/volt
 # seed up press and hold action of all keys
 xset r rate 300 50
 
 neofetch
+export PATH=$PATH:/root/intelFPGA_lite/20.1/quartus/bin
+
+# This is added to fix tilix problems
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
