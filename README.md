@@ -249,6 +249,9 @@ Battery and Brightness
 Digital Clock
 Show Desktop
 
+Main panel & window should look like this:
+![](images/KDE-look.png)
+
 # System configuration
 
 Python: 
