@@ -116,6 +116,7 @@ uk_UA.UTF-8 UTF-8
 ```
 Don't forget to save
 
+**User-related stuff**
 Adjust time zone and time : 
 ```
 ln -sf /usr/share/zoneinfo/Europe/Kiev /etc/localtime
@@ -134,8 +135,7 @@ and uncomment _"%wheel ALL=(ALL) ALL"_
 
 user's password: `passwd YOUR_USERNAME`
 
-Download some potentially useful stuff: `pacman -S  efibootmgr iw wpa_supplicant dialog netctl dhcpcd`.
-And more: `pacman -S ntfs-3g mtools fuse2`
+Download some potentially useful stuff: `pacman -S efibootmgr iwd netctl ntfs-3g htop`.
 
 Install bootloader: `bootctl install`
 
@@ -169,8 +169,7 @@ umount -R /mnt
 reboot
 ```
 
-# GNOME installation & customizaton
-
+**Graphics**
 Install X: `sudo pacman -S xorg-server xorg-xinit xorg-apps mesa-libgl xterm`
 
 Install graphic drivers:
@@ -179,7 +178,9 @@ sudo pacman -S xf86-video-intel
 sudo pacman -S nvidia #if you have nvidia GPU
 ```
 
-Now install GNOME itself:
+# GNOME installation & customizaton
+
+GNOME itself:
 ```
 sudo pacman -Syu
 sudo pacman -S gnome
@@ -200,12 +201,47 @@ Also it's quite useful to configurate your touchpad gestures with [this](https:/
 
 Download all extension and setup tweaks as you like (dash to panel / dash to dock, DropDownTerminal, PanelOSD)
 
-appereance:
+**Appereance**:
 - Theme: vimix-dark-laptop
 - Font: google-sans-regular
 - Cursor: Bibata-original-ice
 - Icons: numix-circle/shadow
 
+# KDE Installation and customization
+*don't install KDE and Gnome at the same time!!!*
+KDE itself:
+```
+sudo pacman -Syu
+sudo pacman -S plasma
+sudo pacman -S NetworkManager
+sudo systemctl enable NetworkManager
+sudo systemctl enable sddm.service
+```
+reboot after installation
+
+How to enable nvidia - go to GNOME installation part
+
+Other important applications:
+```
+yay konsole vlc dolphin gwenview lollypop
+```
+
+**Appereance**:
+- Theme: Ant-dark
+- Font: google-sans-regular/product-sans-regular
+- Cursor: Volantee Light Cursor
+- Icons: Tela circle black
+
+widgets:
+Application Launcher
+Pager
+Icons-only task manager
+Total CPU usage
+Memory usage
+System Tray
+Battery and Brightness
+Digital Clock
+Show Desktop
 
 # System configuration
 
@@ -219,14 +255,18 @@ Java:
 sudo pacman -S jdk11-openjdk jdk8-openjdk java11-openjfx java8-openjfx
 ```
 
-Battery optimization:
+Terminal emulator: `sudo pacman -S tilix
+
+git: `sudo pacman -S git`
+
+**Battery optimization**:
 ```
 sudo pacman -S tlp
 sudo tlp start
 sudo systemctl enable tlp.service
 ```
 
-It's a good idea to create new mirrorlist file for Pacman, if you from Ukraine, you can use this: (replace it in /etc/pacman.d/mirrorlist)
+It's a good idea to create new **mirrorlist** file for Pacman, if you from Ukraine, you can use this: (replace it in /etc/pacman.d/mirrorlist)
 ```
 ## Ukraine
 Server = http://archlinux.ip-connect.vn.ua/$repo/os/$arch
@@ -237,13 +277,9 @@ Server = http://mirrors.nix.org.ua/linux/archlinux/$repo/os/$arch
 Server = https://mirrors.nix.org.ua/linux/archlinux/$repo/os/$arch
 ```
 
-Terminal emulator: `sudo pacman -S tilix`
-
-git: `sudo pacman -S git`
-
 yay: `git clone https://aur.archlinux.org/yay.git; cd yay; makepkg -si`
 
-zsh installation and customization with oh-my-zsh:
+**zsh installation** and customization with oh-my-zsh:
 ```
 cd ~
 sudo pacman -S zsh
@@ -251,7 +287,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 ```
-Browser
+**Browser**
 ```
 yay firefox
 ```
@@ -274,7 +310,7 @@ yay teams slack-desktop telegram-desktop viber zoom
 
 **Useful tools**:
 ```
-yay flameshot simpleScreenRecord iwd cmake screenkey
+yay flameshot simpleScreenRecord cmake screenkey gparted zip unzip
 ```
 
 STM32. Install eveything except eclipse from [this tutorial](https://gist.github.com/Myralllka/42385fdecacb7cc2a45ec9376b57a4b2)
