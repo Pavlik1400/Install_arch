@@ -21,7 +21,7 @@ Save changes and exit
 
 # Main part of installation
 Firstly check if you're loaded in EFI mode: `efivar -l`. The output should be like this: 
-![](../images/efivar.png)
+![](images/efivar.png)
 
 On some computers Wifi won't work without turning the module on with this  command: `rfkill unblock all`
 
