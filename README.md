@@ -6,13 +6,13 @@
 First of all, install arch ISO on your USB stick. [Here](https://www.archlinux.org/download/) you can find an official image. 
 
 I recomend using [RUFUS](https://rufus.ie/) for proper image installation. Choose everything as you see on this photo: 
-![](../images/arch_manual/rufus.PNG)
+![](images/arch_manual/rufus.PNG)
 
 **Important!** all files from USB-stick will be deleted
 
 Now go to the BIOS (press F2 or F8 or smth else on you laptop during booting), and choose `UEFI mode` and change boot order (make your USB first prior). result should be something like that:
 
-![](../images/arch_manual/bios.jpg)
+![](images/arch_manual/bios.jpg)
 
 Save changes and exit
 
@@ -35,7 +35,7 @@ station interface_name connect network_name
 
 Example of turning on wifi:
 
-![](../images/arch_manual/iwctl.jpg)
+![](images/arch_manual/iwctl.jpg)
 
 Check if internet works with `ping google.com` (should appear messages with '64 bytes' at the beginning, press CTRL+C to finish check)
 
@@ -44,7 +44,7 @@ Time synchronization: `timedatectl set-ntp true`
 Now let's look at your previous boot records: `efibootmgr` and delete previous linux or some other stuff: `efibootmgr -b X -B`, where 'X' is number of stuff's boot
 
 Here is how it should look like
-![](../images/arch_manual/efibootmgr.png)
+![](images/arch_manual/efibootmgr.png)
 
 Now disk management: `cfdisk`. Here I delete everything from previous system and 
 - choose  root directory (about 50GB, linux filesystem) 
@@ -54,7 +54,7 @@ Now disk management: `cfdisk`. Here I delete everything from previous system and
 Don't forget to "write" after making new partition. And don't delete Windows partitions if you want dual boot.
 
 Here, how it looks on my laptop:
-![](../images/arch_manual/cfdisk.png)
+![](images/arch_manual/cfdisk.png)
 As you can see I have 64GB root (/dev/sda11), 33GB home (/dev/sda10) 20GB swap (/dev/sda5), and my boot is /dev/sda3. Remeber, that on your laptop/PC, there will be other partition numbers.
 
 Now format partition and mount them. Root:
