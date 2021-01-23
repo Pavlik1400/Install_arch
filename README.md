@@ -47,6 +47,7 @@ Time synchronization: `timedatectl set-ntp true`
 Now let's look at your previous boot records: `efibootmgr` and delete previous linux or some other stuff: `efibootmgr -b X -B`, where 'X' is number of stuff's boot
 
 Here is how it should look like
+
 ![](images/efibootmgr.png)
 
 Now disk management: `cfdisk`. Here I delete everything from previous system and 
@@ -117,6 +118,7 @@ uk_UA.UTF-8 UTF-8
 Don't forget to save
 
 **User-related stuff**
+
 Adjust time zone and time : 
 ```
 ln -sf /usr/share/zoneinfo/Europe/Kiev /etc/localtime
@@ -138,6 +140,7 @@ user's password: `passwd YOUR_USERNAME`
 Download some potentially useful stuff: `pacman -S efibootmgr iwd netctl ntfs-3g htop`.
 
 **Boot configuration**
+
 Install bootloader: `bootctl install`
 
 Loader config: `vim /boot/loader/loader.conf`
@@ -171,6 +174,7 @@ reboot
 ```
 
 **Graphics**
+
 Install X: `sudo pacman -S xorg-server xorg-xinit xorg-apps mesa-libgl xterm`
 
 Install graphic drivers:
@@ -331,16 +335,6 @@ Quartus Prime:
 ```
 yay quartus-free quartus-free-modelsim quartus-free-quartus quartus-free-devinfo-cyclone quartus-free-help
 ```
-
-List of other apps I use:
-1. Slack
-2. IntellijIDEA (don't forget to get jdk)
-3. AndroidStudio (+sdk +ndk)
-4. zoom
-5. Microsoft Teams ('teams' package in local repository)
-6. clion-gui
-7. LibreOffice
-
 
 Looks like that's it. Happy archlinux experience!
 
