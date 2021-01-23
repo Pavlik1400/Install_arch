@@ -5,8 +5,11 @@
 ## Preparing
 First of all, install arch ISO on your USB stick. [Here](https://www.archlinux.org/download/) you can find an official image. 
 
-I recomend using [RUFUS](https://rufus.ie/) for proper image installation. Choose everything as you see on this photo: 
+I recomend using [RUFUS](https://rufus.ie/) for proper image installation under Windows. Choose everything as you see on this photo: 
 ![](images/rufus.PNG)
+
+Under Linux I recommend "dd":
+$ sudo dd bs=4M if=path/to/archlinux.iso of=/dev/sdx status=progress oflag=sync
 
 **Important!** all files from USB-stick will be deleted
 
@@ -166,7 +169,7 @@ umount -R /mnt
 reboot
 ```
 
-# GNOME installation
+# GNOME installation & customizaton
 
 Install X: `sudo pacman -S xorg-server xorg-xinit xorg-apps mesa-libgl xterm`
 
@@ -187,13 +190,33 @@ systemctl enable gdm
 Lenovo y530 (my laptop) can't render HDMI output with intel GPU, so if you want to use second monitor, read [here](https://wiki.archlinux.org/index.php/PRIME#PRIME_render_offload)
 Also download prime-run (for running application with nvidia GPU(if you have nvidia): `sudo pacman -S prime-run`
 
-# System customization and apps installation
-First of all set normal wallpalers, change touchpad sensitivity and other settings in GNOME
+Now customization. First of all set normal wallpalers, change touchpad sensitivity and other settings in GNOME
+
+```
+yay gnome-tweaks
+```
+
+Also it's quite useful to configurate your touchpad gestures with [this](https://github.com/bulletmark/libinput-gestures) application, if you're using xorg on gnome
+
+Download all extension and setup tweaks as you like (dash to panel / dash to dock, DropDownTerminal, PanelOSD)
+
+appereance:
+- Theme: vimix-dark-laptop
+- Font: google-sans-regular
+- Cursor: Bibata-original-ice
+- Icons: numix-circle/shadow
+
+
+# System configuration
 
 Python: 
 ```
-sudo pacman python-pip
-sudo pacman ipython
+sudo pacman -S python-pip ipython
+```
+
+Java:
+```
+sudo pacman -S jdk11-openjdk jdk8-openjdk java11-openjfx java8-openjfx
 ```
 
 Battery optimization:
@@ -220,7 +243,7 @@ git: `sudo pacman -S git`
 
 yay: `git clone https://aur.archlinux.org/yay.git; cd yay; makepkg -si`
 
-zsh installation and customization with oh my zsh:
+zsh installation and customization with oh-my-zsh:
 ```
 cd ~
 sudo pacman -S zsh
@@ -228,25 +251,31 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 ```
-Browser + telegram: 
+Browser
 ```
-yay telegram-desktop
 yay firefox
-yay vivaldi
 ```
 Don't forget to sign in gmail, youtube, CMS, etc.
 
-CUSTOMIZATION
+Also take all dot files, configure vim plugins, .zshrc, etc.
+
+# Apps for work
+**Code editors**: 
 ```
-yay gnome-tweaks
+yay visual-studio-code-insiders clion pycharm-community-edition intellij-idea-community-edition
 ```
-Download all extension and setup tweask as you like
 
-Install VScode: `yay visual-studio-code-insiders`
+Don't forget to install material theme and set 16's source code pro font in jetBrains programs
 
-Cion `yay clion #chose just clion`. Don't forget to activate licension and type path to compilers and debugger
+**Communication**:
+```
+yay teams slack-desktop telegram-desktop viber zoom
+```
 
-Pycharm `yay pycharm #choose community version` Don't forget to install material theme and set 18's font
+**Useful tools**:
+```
+yay flameshot simpleScreenRecord iwd cmake screenkey
+```
 
 STM32. Install eveything except eclipse from [this tutorial](https://gist.github.com/Myralllka/42385fdecacb7cc2a45ec9376b57a4b2)
 After this download STM32CubeMX itself from [official site](https://www.st.com/en/development-tools/stm32cubemx.html)
@@ -260,6 +289,11 @@ sudo ln -s libncursesw.so.6.1 libtinfo.so.5
 ```
 Follow [this tutorial](https://cms.ucu.edu.ua/pluginfile.php/181558/mod_resource/content/1/CLion_STM32_Settings.pdf) to work with STM32 through CLion: 
 
+Quartus Prime:
+```
+yay quartus-free quartus-free-modelsim quartus-free-quartus quartus-free-devinfo-cyclone quartus-free-help
+```
+
 List of other apps I use:
 1. Slack
 2. IntellijIDEA (don't forget to get jdk)
@@ -269,7 +303,6 @@ List of other apps I use:
 6. clion-gui
 7. LibreOffice
 
-Also it's quite useful to configurate your touchpad gestures with [this](https://github.com/bulletmark/libinput-gestures) application, if you're using xorg on gnome
 
 Looks like that's it. Happy archlinux experience!
 
