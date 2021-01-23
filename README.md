@@ -2,7 +2,7 @@
 
 *The basis for this tutorial is [this one](https://sollus-soft.blogspot.com/2017/01/arch-linux-windows-10-uefi-systemd-boot.html)*
 
-## Preparing
+# Preparing
 First of all, install arch ISO on your USB stick. [Here](https://www.archlinux.org/download/) you can find an official image. 
 
 I recomend using [RUFUS](https://rufus.ie/) for proper image installation under Windows. Choose everything as you see on this photo: 
@@ -19,7 +19,7 @@ Now go to the BIOS (press F2 or F8 or smth else on you laptop during booting), a
 
 Save changes and exit
 
-## main part of installation
+# Main part of installation
 Firstly check if you're loaded in EFI mode: `efivar -l`. The output should be like this: 
 ![](../images/efivar.png)
 
@@ -137,6 +137,7 @@ user's password: `passwd YOUR_USERNAME`
 
 Download some potentially useful stuff: `pacman -S efibootmgr iwd netctl ntfs-3g htop`.
 
+**Boot configuration**
 Install bootloader: `bootctl install`
 
 Loader config: `vim /boot/loader/loader.conf`
@@ -207,8 +208,9 @@ Download all extension and setup tweaks as you like (dash to panel / dash to doc
 - Cursor: Bibata-original-ice
 - Icons: numix-circle/shadow
 
-# KDE Installation and customization
+# KDE Installation & customization
 *don't install KDE and Gnome at the same time!!!*
+
 KDE itself:
 ```
 sudo pacman -Syu
