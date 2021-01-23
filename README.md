@@ -274,6 +274,13 @@ sudo pacman -S tlp
 sudo tlp start
 sudo systemctl enable tlp.service
 ```
+Bluetooth configuration:
+```
+yay bluez bluez-utils bluez-libs
+#if btusb is not connected, then
+modprobe btusb
+sudo systemctl enable --now bluetooth.service
+```
 
 It's a good idea to create new **mirrorlist** file for Pacman, if you from Ukraine, you can use this: (replace it in /etc/pacman.d/mirrorlist)
 ```
