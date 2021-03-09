@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,8 @@ export ZSH="/home/pasha/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # AGNOSTER_PROMPT_ON_NEWLINE=true
 # AGNOSTER_RPROMPT_ON_NEWLINE=true
 # ZSH_THEME="bira"
@@ -114,26 +122,26 @@ alias c="clear"
 alias q="exit"
 alias j="journalctl"
 alias jecb="journalctl -b -p err..crit"
+alias ass16="ipython /home/pasha/Documents/poc/PureFPGA/assembler/assembler.py"
+alias photoshop="wine '/home/pasha/.wine/drive_c/Program Files/Adobe/Adobe Photoshop CS6/Photoshop.exe'"
 # sources 
 prompt_context(){}
-source /home/pasha/syntax/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#
-#source /usr/bin/virtualenvwrapper.sh
-
-## pyenv stuff 
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-#export PATH="/home/pasha/.pyenv/bin:$PATH"
-
-# other exports
-export EDITOR="vim"
-# seed up press and hold action of all keys
-xset r rate 300 50
-
-neofetch
-export PATH=$PATH:/root/intelFPGA_lite/20.1/quartus/bin
+source /home/pasha/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # This is added to fix tilix problems
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
+
+# other exports
+export EDITOR="vim"
+export PATH="$PATH:/opt/cuda/bin"
+# fix display autocomplete bug in zsh
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# seed up press and hold action of all keys
+xset r rate 300 50
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
