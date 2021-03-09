@@ -125,15 +125,23 @@ ln -sf /usr/share/zoneinfo/Europe/Kiev /etc/localtime
 hwclock --systohc
 ```
 
-Adjust the name of the computer: `vim /etc/hostname` and write there _"userhost - YOUR_USERNAME"_
+Adjust the name of the computer: `vim /etc/hostname` and write there _"YOUR_USERNAME"_
 
-Adjust hosts: `vim /etc/hosts` and write there -_"127.0.0.1 pavlik_giley.localdomain YOUR_USERNAME"-_ 
-DONT FORGET TO SAVE EVERYTHING
+Adjust hosts: `vim /etc/hosts` and write there -
+
+```
+127.0.0.1 localhost
+::1 	  localhost
+127.0.1.1 pasha.localdomain pasha
+``` 
+
 
 Password for root: `passwd` 
 
 Add new user: `useradd -G wheel -s /bin/bash -m YOUR_USERNAME`, and give him sudo permissions: `vim /etc/sudoers` 
 and uncomment _"%wheel ALL=(ALL) ALL"_
+
+**note** if /etc/sudoers is readonly, try `visudo`
 
 user's password: `passwd YOUR_USERNAME`
 
