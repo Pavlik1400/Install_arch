@@ -241,9 +241,9 @@ yay konsole vlc dolphin gwenview lollypop
 ```
 
 **Appereance**:
-- Theme: Ant-dark
-- Font: google-sans-regular/product-sans-regular
-- Cursor: Volantee Light Cursor
+- Theme: Chrome os dark
+- Font: open sans
+- Cursor: google dot black
 - Icons: Tela circle black
 
 widgets:
@@ -265,6 +265,10 @@ Main panel & window should look like this:
 Python: 
 ```
 sudo pacman -S python-pip ipython
+# conda:
+wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh
+sudo chmod +x Anaconda3-2021.11-Linux-x86_64.sh
+./Anaconda3-2021.11-Linux-x86_64.sh
 ```
 
 Java:
