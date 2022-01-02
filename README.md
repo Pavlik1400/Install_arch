@@ -131,7 +131,7 @@ Adjust hosts: `vim /etc/hosts` and write there -
 
 ```
 127.0.0.1 localhost
-::1 	  localhost
+::1 	    localhost
 127.0.1.1 pasha.localdomain pasha
 ``` 
 
@@ -145,7 +145,7 @@ and uncomment _"%wheel ALL=(ALL) ALL"_
 
 user's password: `passwd YOUR_USERNAME`
 
-Download some potentially useful stuff: `pacman -S efibootmgr iwd netctl ntfs-3g htop`.
+Download some potentially useful stuff: `pacman -S efibootmgr iwd netctl ntfs-3g htop dhcp`.
 
 **Boot configuration**
 
@@ -164,6 +164,7 @@ editor 0
 Now it is vital to adjust kernel settings: 
 ```
 pacman -S intel-ucode
+pacman -S linux
 vim /boot/loader/entries/arch.conf
 ```
 Write here something like this (maybe you will need to change them in the future):
