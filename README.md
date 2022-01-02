@@ -192,6 +192,10 @@ sudo pacman -S xf86-video-intel
 sudo pacman -S nvidia #if you have nvidia GPU
 ```
 
+To make nvidia render gui (tested only on KDE):
+- use additional options from arch.conf
+- add `xrandr --auto` to `/etc/X11/xinit/xinitrc`
+
 # GNOME installation & customizaton
 
 GNOME itself:
@@ -238,7 +242,7 @@ How to enable nvidia - go to GNOME installation part
 
 Other important applications:
 ```
-yay konsole vlc dolphin gwenview lollypop
+yay konsole vlc dolphin gwenview lollypop exa
 ```
 
 **Appereance**:
@@ -339,7 +343,7 @@ yay teams slack-desktop telegram-desktop viber zoom
 
 **Useful tools**:
 ```
-yay flameshot simpleScreenRecord cmake screenkey gparted zip unzip
+yay flameshot simplescreenrecorder cmake gparted zip unzip
 ```
 
 STM32. Install eveything except eclipse from [this tutorial](https://gist.github.com/Myralllka/42385fdecacb7cc2a45ec9376b57a4b2)
