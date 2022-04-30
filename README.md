@@ -281,7 +281,7 @@ Java:
 sudo pacman -S jdk11-openjdk jdk8-openjdk java11-openjfx java8-openjfx
 ```
 
-Terminal emulator: `sudo pacman -S tilix
+Terminal emulator: `sudo pacman -S tilix`
 
 git: `sudo pacman -S git`
 
